@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Alma — The Companion That Moves With You</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+/* ─── RESET & BASE ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  background: #FAF6F0;
+  color: #1E2630;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 400;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+/* ─── TOKENS ─── */
+:root {
+  --ivory:    #FAF6F0;
+  --cream:    #F4EDE3;
+  --deep:     #1A2B3C;
+  --ink:      #2C3440;
+  --amber:    #C8883A;
+  --glow:     #E8A060;
+  --sage:     #7BA898;
+  --mist:     #B8CFC9;
+  --warm:     #E07050;
+  --gold:     #D4A040;
+  --r: 1.5rem;
+}
+
+/* ─── TYPOGRAPHY ─── */
+h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 400; line-height: 1.1; }
+.serif { font-family: 'Cormorant Garamond', serif; }
+.sans  { font-family: 'Outfit', sans-serif; }
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.25rem 4rem;
+  background: rgba(250, 246, 240, 0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(200,136,58,0.12);
+  transition: box-shadow 0.3s;
+}
+nav.scrolled { box-shadow: 0 2px 40px rgba(26,43,60,0.08); }
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem; font-weight: 500;
+  color: var(--deep); letter-spacing: 0.04em;
+}
+.nav-logo span { color: var(--amber); }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink); text-decoration: none; opacity: 0.75;
+  transition: opacity 0.2s, color 0.2s;
+}
+.nav-links a:hover { opacity: 1; color: var(--amber); }
+.nav-cta {
+  background: var(--deep); color: var(--ivory);
+  padding: 0.6rem 1.5rem; border-radius: 50px;
+  font-size: 0.8rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+  text-decoration: none; transition: background 0.2s, transform 0.2s;
+}
+.nav-cta:hover { background: var(--amber); transform: translateY(-1px); }
+
+/* ─── HERO ─── */
+#hero {
+  min-height: 100vh;
+  display: grid; place-items: center;
+  position: relative; overflow: hidden;
+  padding: 8rem 4rem 6rem;
+}
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background: var(--ivory);
+}
+/* animated gradient blobs */
+.blob {
+  position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.45;
+  animation: drift 12s ease-in-out infinite alternate;
+}
+.blob-1 { width: 600px; height: 600px; background: radial-gradient(circle, #E8C090 0%, transparent 70%); top: -150px; right: -100px; animation-delay: 0s; }
+.blob-2 { width: 500px; height: 500px; background: radial-gradient(circle, #A8C8C0 0%, transparent 70%); bottom: -100px; left: -80px; animation-delay: -4s; }
+.blob-3 { width: 400px; height: 400px; background: radial-gradient(circle, #E09878 0%, transparent 70%); top: 30%; left: 25%; animation-delay: -8s; }
+@keyframes drift { from { transform: translate(0,0) scale(1); } to { transform: translate(40px,30px) scale(1.06); } }
+
+.hero-inner {
+  position: relative; z-index: 1;
+  display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 6rem;
+  max-width: 1200px; width: 100%;
+}
+.hero-text { display: flex; flex-direction: column; gap: 2rem; }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--amber); opacity: 0.9;
+}
+.hero-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--amber); }
+.hero-h1 {
+  font-size: clamp(3.5rem, 6vw, 6rem);
+  font-weight: 300; color: var(--deep);
+  letter-spacing: -0.01em;
+}
+.hero-h1 em { font-style: italic; color: var(--amber); }
+.hero-sub {
+  font-size: 1.1rem; color: var(--ink); opacity: 0.72; max-width: 420px;
+  font-weight: 300; line-height: 1.75;
+}
+.hero-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.pill {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  background: white; border: 1px solid rgba(200,136,58,0.25);
+  padding: 0.4rem 1rem; border-radius: 50px;
+  font-size: 0.78rem; font-weight: 500; color: var(--ink);
+  box-shadow: 0 2px 12px rgba(26,43,60,0.05);
+}
+.pill-icon { font-size: 0.9rem; }
+.hero-actions { display: flex; align-items: center; gap: 1.5rem; }
+.btn-primary {
+  background: var(--deep); color: var(--ivory);
+  padding: 0.85rem 2.2rem; border-radius: 50px;
+  font-size: 0.9rem; font-weight: 500; text-decoration: none;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 20px rgba(26,43,60,0.2);
+}
+.btn-primary:hover { background: var(--amber); transform: translateY(-2px); box-shadow: 0 6px 24px rgba(200,136,58,0.35); }
+.btn-ghost {
+  color: var(--ink); font-size: 0.9rem; font-weight: 500; text-decoration: none;
+  opacity: 0.7; transition: opacity 0.2s;
+  display: flex; align-items: center; gap: 0.4rem;
+}
+.btn-ghost:hover { opacity: 1; }
+.btn-ghost::after { content: '→'; }
+
+/* Alma face visual */
+.hero-visual { display: flex; align-items: center; justify-content: center; position: relative; }
+.alma-orb-wrap {
+  position: relative; width: 380px; height: 380px;
+  display: flex; align-items: center; justify-content: center;
+}
+.alma-orb-ring {
+  position: absolute; border-radius: 50%;
+  border: 1px solid rgba(200,136,58,0.2);
+  animation: ring-pulse 4s ease-in-out infinite;
+}
+.ring-1 { width: 100%; height: 100%; animation-delay: 0s; }
+.ring-2 { width: 120%; height: 120%; animation-delay: 1s; }
+.ring-3 { width: 140%; height: 140%; animation-delay: 2s; }
+@keyframes ring-pulse {
+  0%,100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.1; transform: scale(1.03); }
+}
+.alma-orb {
+  width: 280px; height: 280px; border-radius: 50%; position: relative;
+  background: radial-gradient(ellipse at 35% 35%, #FFF4E8 0%, #EDD4A8 30%, #C89050 65%, #8B5E30 100%);
+  box-shadow: 0 0 80px rgba(200,136,58,0.4), 0 0 160px rgba(200,136,58,0.15), inset 0 -30px 60px rgba(80,40,10,0.15);
+  animation: breathe 5s ease-in-out infinite;
+}
+@keyframes breathe {
+  0%,100% { transform: scale(1); box-shadow: 0 0 80px rgba(200,136,58,0.4), 0 0 160px rgba(200,136,58,0.15); }
+  50% { transform: scale(1.025); box-shadow: 0 0 100px rgba(200,136,58,0.55), 0 0 200px rgba(200,136,58,0.2); }
+}
+/* Eyes */
+.alma-eyes {
+  position: absolute; top: 42%; left: 50%; transform: translate(-50%, -50%);
+  display: flex; gap: 48px;
+}
+.alma-eye {
+  width: 14px; height: 14px; border-radius: 50%;
+  background: rgba(255,255,255,0.85);
+  box-shadow: 0 0 12px rgba(255,255,255,0.5);
+  animation: blink 6s ease-in-out infinite;
+}
+.alma-eye:last-child { animation-delay: 0.1s; }
+@keyframes blink {
+  0%,90%,100% { transform: scaleY(1); }
+  95% { transform: scaleY(0.1); }
+}
+/* Smile */
+.alma-smile {
+  position: absolute; bottom: 36%; left: 50%; transform: translateX(-50%);
+  width: 40px; height: 12px;
+  border-bottom: 2.5px solid rgba(255,255,255,0.7);
+  border-left: 2px solid rgba(255,255,255,0.5);
+  border-right: 2px solid rgba(255,255,255,0.5);
+  border-radius: 0 0 20px 20px;
+}
+/* Floating badges */
+.hero-badge {
+  position: absolute;
+  background: white; border-radius: 14px;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 8px 32px rgba(26,43,60,0.12);
+  font-size: 0.78rem; font-weight: 500; color: var(--ink);
+  display: flex; align-items: center; gap: 0.5rem;
+  animation: float 4s ease-in-out infinite;
+}
+.badge-icon { font-size: 1.1rem; }
+.badge-1 { bottom: 30px; left: -30px; animation-delay: 0s; }
+.badge-2 { top: 30px; right: -20px; animation-delay: -2s; }
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+/* Google badge */
+.google-badge {
+  position: absolute; bottom: -20px; right: 20px;
+  background: white; border-radius: 10px;
+  padding: 0.5rem 0.9rem;
+  box-shadow: 0 4px 20px rgba(26,43,60,0.1);
+  font-size: 0.7rem; font-weight: 600; color: #5F6368;
+  letter-spacing: 0.04em;
+}
+
+/* ─── SECTION COMMONS ─── */
+section { padding: 7rem 4rem; }
+.section-label {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--amber); margin-bottom: 1.2rem;
+}
+.section-label::before { content: ''; width: 24px; height: 1px; background: var(--amber); }
+.section-title {
+  font-size: clamp(2.2rem, 4vw, 3.8rem);
+  font-weight: 300; color: var(--deep);
+  max-width: 720px; line-height: 1.15;
+}
+.section-title em { font-style: italic; color: var(--amber); }
+.max-w { max-width: 1200px; margin: 0 auto; }
+
+/* ─── PROBLEM ─── */
+#problem { background: var(--deep); color: var(--ivory); }
+#problem .section-label { color: var(--glow); }
+#problem .section-label::before { background: var(--glow); }
+#problem .section-title { color: var(--ivory); max-width: 800px; }
+#problem .section-title em { color: var(--glow); }
+.stats-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px;
+  margin-top: 4rem;
+}
+.stat-card {
+  background: rgba(255,255,255,0.05);
+  padding: 2.5rem 2rem; border-radius: 0;
+  position: relative; overflow: hidden;
+  transition: background 0.3s;
+}
+.stat-card:hover { background: rgba(255,255,255,0.09); }
+.stat-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--glow), transparent);
+}
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.8rem, 4vw, 4.5rem);
+  font-weight: 300; color: var(--glow);
+  line-height: 1; margin-bottom: 0.6rem;
+  letter-spacing: -0.02em;
+}
+.stat-desc { font-size: 0.85rem; opacity: 0.65; line-height: 1.55; font-weight: 300; }
+.stat-source { font-size: 0.7rem; opacity: 0.4; margin-top: 0.75rem; font-style: italic; }
+.problem-footer {
+  margin-top: 3rem; padding-top: 2.5rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  display: flex; gap: 3rem; flex-wrap: wrap;
+}
+.problem-bullet {
+  display: flex; align-items: center; gap: 0.75rem;
+  font-size: 0.85rem; opacity: 0.7;
+}
+.problem-bullet::before { content: '—'; color: var(--glow); }
+
+/* ─── MEET ALMA ─── */
+#meet { background: var(--ivory); }
+.features-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 3px;
+  margin-top: 4rem;
+}
+.feature-card {
+  background: var(--cream); padding: 3rem;
+  position: relative; overflow: hidden;
+  transition: transform 0.3s, background 0.3s;
+}
+.feature-card:hover { background: white; transform: translateY(-3px); }
+.feature-card.large { grid-column: 1 / -1; background: var(--deep); color: var(--ivory); }
+.feature-card.large:hover { transform: none; }
+.feature-icon {
+  font-size: 2.2rem; margin-bottom: 1.5rem; display: block;
+}
+.feature-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem; font-weight: 400; margin-bottom: 0.75rem;
+  color: var(--deep);
+}
+.feature-card.large .feature-title { color: var(--ivory); }
+.feature-body { font-size: 0.9rem; line-height: 1.7; opacity: 0.7; font-weight: 300; }
+.feature-card.large .feature-body { opacity: 0.65; max-width: 600px; }
+.feature-modes {
+  display: flex; gap: 1.5rem; margin-top: 2rem; flex-wrap: wrap;
+}
+.mode-card {
+  flex: 1; min-width: 200px;
+  background: rgba(255,255,255,0.08); border-radius: 12px;
+  padding: 1.5rem; border: 1px solid rgba(255,255,255,0.1);
+}
+.mode-name { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--glow); margin-bottom: 0.6rem; }
+.mode-desc { font-size: 0.82rem; opacity: 0.6; line-height: 1.6; }
+
+/* ─── DAY WITH ALMA ─── */
+#day { background: var(--cream); }
+.timeline {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+  margin-top: 4rem; position: relative;
+}
+.timeline::before {
+  content: ''; position: absolute; top: 2.5rem; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--amber), var(--sage), var(--amber), transparent);
+  opacity: 0.4;
+}
+.time-block { padding: 0 2rem 0 0; position: relative; }
+.time-block:last-child { padding-right: 0; }
+.time-dot {
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--amber); margin-bottom: 1.5rem;
+  box-shadow: 0 0 0 4px rgba(200,136,58,0.15);
+}
+.time-label {
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--amber); margin-bottom: 0.75rem;
+  display: flex; align-items: center; gap: 0.4rem;
+}
+.time-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem; font-weight: 400; margin-bottom: 1rem; color: var(--deep);
+}
+.time-items { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+.time-items li {
+  font-size: 0.82rem; color: var(--ink); opacity: 0.65;
+  padding-left: 1rem; position: relative; line-height: 1.5;
+}
+.time-items li::before { content: '·'; position: absolute; left: 0; color: var(--amber); }
+
+/* ─── TECHNOLOGY ─── */
+#tech { background: var(--ivory); }
+.tech-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px;
+  margin-top: 4rem;
+}
+.tech-card {
+  background: var(--cream); padding: 2.5rem;
+  border-left: 3px solid transparent;
+  transition: border-color 0.3s, background 0.3s;
+}
+.tech-card:hover { border-color: var(--amber); background: white; }
+.tech-tag {
+  display: inline-block;
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--amber); background: rgba(200,136,58,0.1); border-radius: 4px;
+  padding: 0.2rem 0.6rem; margin-bottom: 1rem;
+}
+.tech-name { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 400; margin-bottom: 0.6rem; color: var(--deep); }
+.tech-desc { font-size: 0.85rem; opacity: 0.65; line-height: 1.65; font-weight: 300; }
+.tech-spec { font-size: 0.75rem; color: var(--amber); margin-top: 0.75rem; font-weight: 500; }
+.bom-note {
+  margin-top: 3rem; padding: 2rem 2.5rem;
+  background: var(--deep); color: var(--ivory);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+}
+.bom-note p { font-size: 0.85rem; opacity: 0.7; font-weight: 300; }
+.bom-range { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--glow); font-weight: 300; }
+
+/* ─── MARKET ─── */
+#market { background: var(--cream); }
+.market-numbers {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 3rem;
+  margin-top: 4rem;
+}
+.market-num { border-top: 2px solid var(--amber); padding-top: 1.5rem; }
+.market-fig {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 3.5vw, 3.2rem); font-weight: 300;
+  color: var(--deep); line-height: 1; margin-bottom: 0.4rem;
+  letter-spacing: -0.02em;
+}
+.market-label { font-size: 0.82rem; opacity: 0.65; line-height: 1.5; font-weight: 300; }
+.market-expansion {
+  margin-top: 4rem; padding: 2.5rem;
+  background: var(--deep); color: var(--ivory); border-radius: 12px;
+}
+.market-expansion-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 300; margin-bottom: 1.5rem; opacity: 0.6; }
+.expansion-steps {
+  display: flex; align-items: center; gap: 0; flex-wrap: wrap;
+}
+.expansion-step {
+  flex: 1; min-width: 120px; padding: 0 1.5rem;
+  border-right: 1px solid rgba(255,255,255,0.1);
+  position: relative;
+}
+.expansion-step:last-child { border-right: none; }
+.exp-country { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--glow); margin-bottom: 0.3rem; }
+.exp-note { font-size: 0.78rem; opacity: 0.5; font-weight: 300; }
+
+/* ─── BUSINESS MODEL ─── */
+#model { background: var(--ivory); }
+.biz-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px;
+  margin-top: 4rem;
+}
+.biz-card {
+  background: var(--cream); padding: 2.5rem;
+  transition: background 0.3s;
+}
+.biz-card:hover { background: white; }
+.biz-type {
+  display: inline-block; font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ivory); background: var(--deep);
+  padding: 0.25rem 0.75rem; border-radius: 4px; margin-bottom: 1.2rem;
+}
+.biz-type.b2b2c { background: var(--amber); }
+.biz-type.b2c   { background: var(--sage); }
+.biz-type.b2g   { background: var(--warm); }
+.biz-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 400; margin-bottom: 0.6rem; color: var(--deep); }
+.biz-desc { font-size: 0.85rem; opacity: 0.65; line-height: 1.65; font-weight: 300; }
+.biz-examples { font-size: 0.78rem; color: var(--amber); margin-top: 0.75rem; font-weight: 500; }
+.margin-bar {
+  margin-top: 3rem; display: flex; gap: 2rem; flex-wrap: wrap;
+}
+.margin-item { flex: 1; min-width: 200px; background: var(--deep); color: var(--ivory); padding: 1.75rem 2rem; border-radius: 10px; }
+.margin-pct {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.8rem; font-weight: 300; color: var(--glow); line-height: 1;
+}
+.margin-label { font-size: 0.8rem; opacity: 0.55; margin-top: 0.3rem; }
+
+/* ─── COMPETITION ─── */
+#competition { background: var(--deep); color: var(--ivory); }
+#competition .section-title { color: var(--ivory); }
+#competition .section-label { color: var(--glow); }
+#competition .section-label::before { background: var(--glow); }
+.comp-table { width: 100%; margin-top: 4rem; border-collapse: separate; border-spacing: 2px; }
+.comp-table th {
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  text-align: left; padding: 1rem 1.5rem;
+  background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.5);
+}
+.comp-table th.alma-col { background: rgba(200,136,58,0.2); color: var(--glow); }
+.comp-table td { padding: 1rem 1.5rem; background: rgba(255,255,255,0.03); font-size: 0.83rem; color: rgba(255,255,255,0.65); vertical-align: top; }
+.comp-table td.alma-col { background: rgba(200,136,58,0.08); color: var(--ivory); font-weight: 500; }
+.comp-table tr:hover td { background: rgba(255,255,255,0.06); }
+.comp-table tr:hover td.alma-col { background: rgba(200,136,58,0.14); }
+.check { color: var(--glow); font-weight: 700; }
+.x-mark { color: rgba(255,255,255,0.25); }
+.win-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 3rem; }
+.win-card {
+  background: rgba(255,255,255,0.05); padding: 2rem;
+  border-top: 2px solid var(--amber);
+}
+.win-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 400; color: var(--glow); margin-bottom: 0.6rem; }
+.win-desc { font-size: 0.82rem; opacity: 0.6; line-height: 1.6; font-weight: 300; }
+
+/* ─── ROADMAP ─── */
+#roadmap { background: var(--ivory); }
+.roadmap-track {
+  position: relative; margin-top: 5rem;
+  padding: 0 0 2rem;
+}
+.roadmap-line {
+  position: absolute; top: 1.5rem; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, var(--amber) 0%, var(--sage) 60%, var(--mist) 100%);
+  opacity: 0.35;
+}
+.roadmap-phases { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; position: relative; }
+.roadmap-phase { padding-top: 3.5rem; position: relative; }
+.phase-dot {
+  position: absolute; top: 0; left: 0;
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--amber);
+  box-shadow: 0 0 0 5px rgba(200,136,58,0.15);
+}
+.phase-num {
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--amber); margin-bottom: 0.5rem;
+}
+.phase-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 400; color: var(--deep); margin-bottom: 0.3rem; }
+.phase-time { font-size: 0.75rem; color: var(--sage); font-weight: 500; margin-bottom: 1rem; }
+.phase-items { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
+.phase-items li { font-size: 0.8rem; color: var(--ink); opacity: 0.65; padding-left: 1rem; position: relative; }
+.phase-items li::before { content: '→'; position: absolute; left: 0; color: var(--amber); font-size: 0.65rem; top: 0.1rem; }
+
+/* ─── TEAM ─── */
+#team { background: var(--cream); }
+.team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 4rem; }
+.team-card {
+  background: var(--ivory); padding: 2.5rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.team-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(26,43,60,0.1); }
+.team-avatar {
+  width: 72px; height: 72px; border-radius: 50%;
+  margin-bottom: 1.5rem;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem;
+}
+.avatar-1 { background: linear-gradient(135deg, #E8C090 0%, #C89050 100%); }
+.avatar-2 { background: linear-gradient(135deg, #A8C8BE 0%, #6A9E94 100%); }
+.avatar-3 { background: linear-gradient(135deg, #E0A098 0%, #C06058 100%); }
+.team-role {
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--amber); margin-bottom: 0.4rem;
+}
+.team-name { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; color: var(--deep); margin-bottom: 1rem; }
+.team-bio { font-size: 0.82rem; opacity: 0.65; line-height: 1.65; font-weight: 300; }
+.hiring-banner {
+  margin-top: 3rem; padding: 2rem 2.5rem;
+  background: var(--deep); color: var(--ivory); border-radius: 12px;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;
+}
+.hiring-text { font-size: 1rem; font-weight: 300; opacity: 0.8; }
+.hiring-roles { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.hiring-role {
+  font-size: 0.75rem; font-weight: 500; padding: 0.3rem 0.9rem; border-radius: 50px;
+  background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.8);
+}
+
+/* ─── CLOSING CTA ─── */
+#cta {
+  padding: 10rem 4rem;
+  background: var(--ivory);
+  text-align: center; position: relative; overflow: hidden;
+}
+.cta-bg-glow {
+  position: absolute; width: 800px; height: 800px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(232,160,96,0.15) 0%, transparent 70%);
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.cta-inner { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+.cta-eyebrow { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--amber); margin-bottom: 2rem; }
+.cta-headline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3rem, 6vw, 5.5rem); font-weight: 300;
+  color: var(--deep); line-height: 1.1; margin-bottom: 1.5rem;
+}
+.cta-headline em { font-style: italic; color: var(--amber); }
+.cta-sub { font-size: 1rem; color: var(--ink); opacity: 0.65; font-weight: 300; line-height: 1.75; margin-bottom: 3rem; }
+.cta-quote {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-size: 1.25rem; color: var(--deep); opacity: 0.55;
+  border-left: 2px solid var(--amber); padding-left: 1.5rem;
+  text-align: left; margin-bottom: 3rem;
+}
+.cta-actions { display: flex; align-items: center; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+.cta-metric {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 300; color: var(--amber);
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.cta-metric span { font-size: 0.8rem; font-family: 'Outfit', sans-serif; color: var(--ink); opacity: 0.6; font-weight: 300; }
+.cta-metrics { display: flex; justify-content: center; gap: 3rem; margin-top: 4rem; flex-wrap: wrap; }
+.cta-metric-item { text-align: center; }
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--deep); color: var(--ivory);
+  padding: 3rem 4rem;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;
+}
+.footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; }
+.footer-logo span { color: var(--glow); }
+.footer-meta { font-size: 0.78rem; opacity: 0.4; text-align: right; line-height: 1.7; }
+
+/* ─── REVEAL ANIMATIONS ─── */
+.reveal {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1024px) {
+  nav { padding: 1rem 2rem; }
+  .nav-links { display: none; }
+  section { padding: 5rem 2rem; }
+  .hero-inner { grid-template-columns: 1fr; gap: 4rem; text-align: center; }
+  .hero-pills, .hero-actions { justify-content: center; }
+  .hero-sub { margin: 0 auto; }
+  .hero-visual { order: -1; }
+  .alma-orb-wrap { width: 260px; height: 260px; }
+  .alma-orb { width: 200px; height: 200px; }
+  .alma-eyes { gap: 34px; top: 44%; }
+  .alma-eye { width: 10px; height: 10px; }
+  .hero-badge { display: none; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .features-grid { grid-template-columns: 1fr; }
+  .timeline { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .timeline::before { display: none; }
+  .time-block { padding-right: 0; }
+  .tech-grid { grid-template-columns: 1fr; }
+  .market-numbers { grid-template-columns: repeat(2, 1fr); }
+  .biz-grid { grid-template-columns: 1fr; }
+  .win-cards { grid-template-columns: 1fr; }
+  .roadmap-phases { grid-template-columns: 1fr 1fr; }
+  .team-grid { grid-template-columns: 1fr 1fr; }
+  #cta { padding: 7rem 2rem; }
+  .comp-table { display: none; }
+}
+@media (max-width: 640px) {
+  .stats-grid { grid-template-columns: 1fr; }
+  .market-numbers { grid-template-columns: 1fr; }
+  .timeline { grid-template-columns: 1fr; }
+  .roadmap-phases { grid-template-columns: 1fr; }
+  .team-grid { grid-template-columns: 1fr; }
+  .expansion-steps { flex-direction: column; gap: 1rem; }
+  .expansion-step { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1rem; }
+  footer { flex-direction: column; text-align: center; }
+  .footer-meta { text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">Al<span>m</span>a</div>
+  <ul class="nav-links">
+    <li><a href="#problem">The Problem</a></li>
+    <li><a href="#meet">Product</a></li>
+    <li><a href="#tech">Technology</a></li>
+    <li><a href="#market">Market</a></li>
+    <li><a href="#team">Team</a></li>
+  </ul>
+  <a href="#cta" class="nav-cta">Get in Touch</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <span class="hero-eyebrow">Introducing Alma</span>
+      <h1 class="hero-h1">The Companion<br/>That <em>Moves</em><br/>With You</h1>
+      <p class="hero-sub">A Gemini Robotics-powered mobile companion robot that combats elderly loneliness through deep conversation and collaborative activities.</p>
+      <div class="hero-pills">
+        <span class="pill"><span class="pill-icon">🏠</span> Mobile Presence</span>
+        <span class="pill"><span class="pill-icon">🧠</span> Deep AI Memory</span>
+        <span class="pill"><span class="pill-icon">🎨</span> Shared Activities</span>
+      </div>
+      <div class="hero-actions">
+        <a href="#meet" class="btn-primary">Meet Alma</a>
+        <a href="#cta" class="btn-ghost">Partner with us</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="alma-orb-wrap">
+        <div class="alma-orb-ring ring-1"></div>
+        <div class="alma-orb-ring ring-2"></div>
+        <div class="alma-orb-ring ring-3"></div>
+        <div class="alma-orb">
+          <div class="alma-eyes">
+            <div class="alma-eye"></div>
+            <div class="alma-eye"></div>
+          </div>
+          <div class="alma-smile"></div>
+        </div>
+        <div class="hero-badge badge-1">
+          <span class="badge-icon">💊</span> Medication reminder sent
+        </div>
+        <div class="hero-badge badge-2">
+          <span class="badge-icon">🎵</span> Playing your favourite song
+        </div>
+        <div class="google-badge">Google DeepMind Accelerator · 2026</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section id="problem">
+  <div class="max-w">
+    <div class="reveal">
+      <div class="section-label">The Crisis</div>
+      <h2 class="section-title">Nearly <em>1 Million</em> Elderly Are Dying of Loneliness</h2>
+    </div>
+    <div class="stats-grid reveal reveal-delay-1">
+      <div class="stat-card">
+        <div class="stat-num">~1M</div>
+        <div class="stat-desc">Older adults 65+ in the UK chronically lonely</div>
+        <div class="stat-source">Age UK</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">26%</div>
+        <div class="stat-desc">Increased mortality risk — equivalent to smoking 15 cigarettes per day</div>
+        <div class="stat-source">Holt-Lunstad, 2015</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">£3.7B</div>
+        <div class="stat-desc">Annual cost to UK public services from elderly loneliness</div>
+        <div class="stat-source">Campaign to End Loneliness</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">£850+</div>
+        <div class="stat-desc">Extra NHS cost per lonely older person per year</div>
+        <div class="stat-source">PLOS ONE, 2024</div>
+      </div>
+    </div>
+    <div class="problem-footer reveal reveal-delay-2">
+      <div class="problem-bullet">50% more likely to visit A&E</div>
+      <div class="problem-bullet">9 in 10 experience depression</div>
+      <div class="problem-bullet">UK has had a Minister for Loneliness since 2018</div>
+    </div>
+  </div>
+</section>
+
+<!-- MEET ALMA -->
+<section id="meet">
+  <div class="max-w">
+    <div class="reveal">
+      <div class="section-label">The Product</div>
+      <h2 class="section-title">Meet <em>Alma</em></h2>
+      <p style="margin-top:1rem;font-size:1rem;opacity:0.6;font-weight:300;max-width:480px;">A mobile AI companion that lives with you, moves with you, and does things with you.</p>
+    </div>
+    <div class="features-grid" style="margin-top:3.5rem;">
+      <div class="feature-card reveal reveal-delay-1">
+        <span class="feature-icon">🏠</span>
+        <div class="feature-title">Mobile Presence</div>
+        <div class="feature-body">Moves room-to-room — kitchen, living room, bedside. Always there when you need her. Physical co-presence transforms a device into a true companion.</div>
+      </div>
+      <div class="feature-card reveal reveal-delay-2">
+        <span class="feature-icon">🧠</span>
+        <div class="feature-title">Deep AI Memory</div>
+        <div class="feature-body">Powered by Gemini's 1M-token context window. Alma remembers your stories, your family, your preferences — with no "novelty cliff" over time.</div>
+      </div>
+      <div class="feature-card reveal reveal-delay-3">
+        <span class="feature-icon">🎨</span>
+        <div class="feature-title">Shared Activities</div>
+        <div class="feature-body">Cooking, art, music, games, exercise — Alma does things <em>with</em> you, not just talks at you. Six or more collaborative activities proven to reduce loneliness.</div>
+      </div>
+      <div class="feature-card large reveal reveal-delay-1">
+        <span class="feature-icon">🤖</span>
+        <div class="feature-title">Two Modes, One Companion</div>
+        <div class="feature-body">Alma adapts seamlessly between warm companionship and attentive care — no awkward mode switching required.</div>
+        <div class="feature-modes">
+          <div class="mode-card">
+            <div class="mode-name">Companion Mode</div>
+            <div class="mode-desc">Warm expressive face, carries tea and everyday items on the open shelf. Focused on connection and joy.</div>
+          </div>
+          <div class="mode-card">
+            <div class="mode-name">Care Mode</div>
+            <div class="mode-desc">Health dashboard, medication reminders, carries first aid supplies. Quietly vigilant when it matters most.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DAY WITH ALMA -->
+<section id="day">
+  <div class="max-w">
+    <div class="reveal">
+      <div class="section-label">Agentic AI in Action</div>
+      <h2 class="section-title">A Day <em>With Alma</em></h2>
+      <p style="margin-top:1rem;font-size:0.95rem;opacity:0.6;font-weight:300;max-width:520px;">Alma adapts to a structured daily rhythm — proactive companionship from morning to night, planning, initiating, and adapting throughout the day.</p>
+    </div>
+    <div class="roadmap-track" style="margin-top:4rem;">
+      <div class="roadmap-line"></div>
+      <div class="timeline roadmap-phases">
+        <div class="time-block reveal reveal-delay-1">
+          <div class="phase-dot"></div>
+          <div class="time-label">☀ Morning</div>
+          <div class="time-title">Rise &amp; Connect</div>
+          <ul class="time-items">
+            <li>Warm personalised greeting</li>
+            <li>Breakfast companion</li>
+            <li>Medication reminder</li>
+            <li>Daily schedule overview</li>
+          </ul>
+        </div>
+        <div class="time-block reveal reveal-delay-2">
+          <div class="phase-dot" style="background:var(--sage)"></div>
+          <div class="time-label" style="color:var(--sage)">🎨 Afternoon</div>
+          <div class="time-title">Create &amp; Engage</div>
+          <ul class="time-items">
+            <li>Guided cooking together</li>
+            <li>Visual storytelling</li>
+            <li>Drawing &amp; art exercises</li>
+            <li>Trivia &amp; memory games</li>
+          </ul>
+        </div>
+        <div class="time-block reveal reveal-delay-3">
+          <div class="phase-dot" style="background:var(--warm)"></div>
+          <div class="time-label" style="color:var(--warm)">🎵 Evening</div>
+          <div class="time-title">Reflect &amp; Unwind</div>
+          <ul class="time-items">
+            <li>Music &amp; reminiscence</li>
+            <li>Gentle chair exercises</li>
+            <li>Family video call assist</li>
+            <li>Evening wind-down chat</li>
+          </ul>
+        </div>
+        <div class="time-block reveal reveal-delay-4">
+          <div class="phase-dot" style="background:var(--mist)"></div>
+          <div class="time-label" style="color:var(--mist)">🌙 Night</div>
+          <div class="time-title">Rest &amp; Watch Over</div>
+          <ul class="time-items">
+            <li>Bedside presence</li>
+            <li>Sleep environment check</li>
+            <li>Emergency fall detection</li>
+            <li>Quiet standby mode</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECHNOLOGY -->
+<section id="tech">
+  <div class="max-w">
+    <div class="reveal">
+      <div class="section-label">Under the Hood</div>
+      <h2 class="section-title">Built on <em>Gemini Robotics</em></h2>
+      <p style="margin-top:1rem;font-size:0.95rem;opacity:0.6;font-weight:300;max-width:520px;">Hybrid compute architecture: on-device for privacy, cloud for deep conversation.</p>
+    </div>
+    <div class="tech-grid">
+      <div class="tech-card reveal reveal-delay-1">
+        <div class="tech-tag">Navigation</div>
+        <div class="tech-name">Gemini Robotics VLA</div>
+        <div class="tech-desc">Vision-Language-Action model for autonomous room-to-room navigation. Fine-tuned with just 100 demos for &gt;70% task success.</div>
+        <div class="tech-spec">50Hz control · 250ms latency</div>
+      </div>
+      <div class="tech-card reveal reveal-delay-2">
+        <div class="tech-tag">Context Awareness</div>
+        <div class="tech-name">Gemini Robotics-ER</div>
+        <div class="tech-desc">Embodied Reasoning for situational awareness. "User in kitchen → suggest cooking." 1M token input with full tool calling support.</div>
+        <div class="tech-spec">1M token context window</div>
+      </div>
+      <div class="tech-card reveal reveal-delay-3">
+        <div class="tech-tag">Conversation</div>
+        <div class="tech-name">Gemini 2.5 Flash</div>
+        <div class="tech-desc">Weeks of conversational memory in a single context window. Dynamic content generation with a consistent, warm personality layer.</div>
+        <div class="tech-spec">1M token context · Dynamic generation</div>
+      </div>
+      <div class="tech-card reveal reveal-delay-4">
+        <div class="tech-tag">Privacy</div>
+        <div class="tech-name">Gemini On-Device</div>
+        <div class="tech-desc">2.38–6.3B parameter model on embedded AI compute. Face and emotion processing stays entirely local — privacy by architecture, not policy.</div>
+        <div class="tech-spec">Privacy-first · No cloud dependency for sensing</div>
+      </div>
+    </div>
+    <div class="bom-note reveal">
+      <div>
+        <p style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:0.4rem;">Bill of Materials</p>
+        <p>Compute architecture finalised during accelerator.</p>
+      </div>
+      <div>
+        <p style="font-size:0.7rem;opacity:0.4;margin-bottom:0.2rem;">Cloud-first</p>
+        <div class="bom-range">£200–400</div>
+      </div>
+      <div>
+        <p style="font-size:0.7rem;opacity:0.4;margin-bottom:0.2rem;">On-device</p>
+        <div class="bom-range">£600–900</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARKET -->
+<section id="market">
+  <div class="max-w">
+    <div class="reveal">
+      <div class="section-label">The Opportunity</div>
+      <h2 class="section-title">A <em>£800M+</em> Market Nobody Is Serving</h2>
+    </div>
+    <div class="market-numbers">
+      <div class="market-num reveal reveal-delay-1">
+        <div class="market-fig">£800M+</div>
+        <div class="market-label">UK Addressable Market — ~1M lonely elderly × £850/yr avoidable NHS cost</div>
+      </div>
+      <div class="market-num reveal reveal-delay-2">
+        <div class="market-fig">€58B+</div>
+        <div class="market-label">Germany Long-Term Care — mandatory insurance, 300K caregiver gap by 2030</div>
+      </div>
+      <div class="market-num reveal reveal-delay-3">
+        <div class="market-fig">$7.7B</div>
+        <div class="market-label">Elder Care Robots by 2030 — 16.1% CAGR (Grand View Research)</div>
+      </div>
+      <div class="market-num reveal reveal-delay-4">
+        <div class="market-fig">2.1B</div>
+        <div class="market-label">People aged 60+ by 2050 — 13.5M care workers needed (OECD)</div>
+      </div>
+    </div>
+    <div class="market-expansion reveal">
+      <div class="market-expansion-title">Expansion Pathway</div>
+      <div class="expansion-steps">
+        <div class="expansion-step">
+          <div class="exp-country">UK</div>
+          <div class="exp-note">NHS £26.7B · Launch market</div>
+        </div>
+        <div class="expansion-step">
+          <div class="exp-country">Germany</div>
+          <div class="exp-note">€58B LTC · Insurance model</div>
+        </div>
+        <div class="expansion-step">
+          <div class="exp-country">Nordics</div>
+          <div class="exp-note">3–4% GDP care spend</div>
+        </div>
+        <div class="expansion-step">
+          <div class="exp-country">Japan</div>
+          <div class="exp-note">$203M robotics market</div>
+        </div>
+        <div class="expansion-step">
+          <div class="exp-country">US</div>
+          <div class="exp-note">$162B HCBS spend</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUSINESS MODEL -->
+<section id="model">
+  <div class="max-w">
+    <div class="reveal">
+      <div class="section-label">Revenue</div>
+      <h2 class="section-title">Hardware + <em>Subscription,</em> Four Channels</h2>
+    </div>
+    <div class="biz-grid">
+      <div class="biz-card reveal reveal-delay-1">
+        <div class="biz-type">B2B</div>
+        <div class="biz-title">Care Providers</div>
+        <div class="biz-desc">Care homes and providers buy or lease hardware and pay a monthly subscription per unit as part of their care service offering.</div>
+        <div class="biz-examples">HC-One · Bupa · Emeis · Clariane</div>
+      </div>
+      <div class="biz-card reveal reveal-delay-2">
+        <div class="biz-type b2b2c">B2B2C</div>
+        <div class="biz-title">Organisations</div>
+        <div class="biz-desc">Housing associations, health insurers, and charities buy hardware and pay a monthly subscription. Provided to members as part of their service package.</div>
+        <div class="biz-examples">Age UK · Saga</div>
+      </div>
+      <div class="biz-card reveal reveal-delay-3">
+        <div class="biz-type b2c">B2C</div>
+        <div class="biz-title">Direct to Families</div>
+        <div class="biz-desc">Adult children buy Alma for their aging parents. Hardware purchase plus monthly subscription via website. The most personal channel.</div>
+        <div class="biz-examples">Starting at £700–1,000</div>
+      </div>
+      <div class="biz-card reveal reveal-delay-4">
+        <div class="biz-type b2g">B2G</div>
+        <div class="biz-title">Government</div>
+        <div class="biz-desc">NHS, local authorities, and government aging agencies procure Alma funded through healthcare budgets, social care grants, or programmes like Better Care Fund.</div>
+        <div class="biz-examples">NHS · Local authorities</div>
+      </div>
+    </div>
+    <div class="margin-bar reveal">
+      <div class="margin-item">
+        <div class="margin-pct">50–60%</div>
+        <div class="margin-label">Hardware margin at scale</div>
+      </div>
+      <div class="margin-item">
+        <div class="margin-pct">92–95%</div>
+        <div class="margin-label">Subscription margin</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPETITION -->
+<section id="competition">
+  <div class="max-w">
+    <div class="reveal">
+      <div class="section-label">Competitive Landscape</div>
+      <h2 class="section-title">We Know the Competition — And <em>Why We Win</em></h2>
+    </div>
+    <table class="comp-table reveal">
+      <thead>
+        <tr>
+          <th></th>
+          <th class="alma-col">Alma</th>
+          <th>ElliQ</th>
+          <th>Xiaoli</th>
+          <th>Tessa</th>
+          <th>PARO</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Mobility</td>
+          <td class="alma-col"><span class="check">✓ Mobile</span></td>
+          <td><span class="x-mark">Stationary</span></td>
+          <td><span class="check">✓ Mobile</span></td>
+          <td><span class="x-mark">Stationary</span></td>
+          <td><span class="x-mark">Handheld</span></td>
+        </tr>
+        <tr>
+          <td>AI Depth</td>
+          <td class="alma-col"><span class="check">Gemini 1M context</span></td>
+          <td>Shallow AI</td>
+          <td>Chinese LLM</td>
+          <td><span class="x-mark">Pre-scripted</span></td>
+          <td><span class="x-mark">No conversation</span></td>
+        </tr>
+        <tr>
+          <td>Activities</td>
+          <td class="alma-col"><span class="check">6+ collaborative</span></td>
+          <td>Limited</td>
+          <td>Limited</td>
+          <td>Limited</td>
+          <td><span class="x-mark">None</span></td>
+        </tr>
+        <tr>
+          <td>Geography</td>
+          <td class="alma-col"><span class="check">UK / Europe first</span></td>
+          <td>US only</td>
+          <td>China pilot</td>
+          <td>Netherlands</td>
+          <td>Global</td>
+        </tr>
+        <tr>
+          <td>Price</td>
+          <td class="alma-col"><span class="check">£700–1,000</span></td>
+          <td>~$1,500</td>
+          <td>¥20K–50K</td>
+          <td>€1,529</td>
+          <td>~$6,000</td>
+        </tr>
+        <tr>
+          <td>Key Proof</td>
+          <td class="alma-col"><span class="check">NHS pipeline</span></td>
+          <td>$88M raised · 95% loneliness reduction</td>
+          <td>Gov pilot · Alzheimer's outcomes</td>
+          <td>~2,000 units</td>
+          <td>FDA cleared · NHS used</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="win-cards reveal">
+      <div class="win-card">
+        <div class="win-title">Mobile Presence</div>
+        <div class="win-desc">Only robot that moves room-to-room. Physical co-presence transforms a device into a companion.</div>
+      </div>
+      <div class="win-card">
+        <div class="win-title">Deep Memory</div>
+        <div class="win-desc">Gemini's 1M-token context remembers names, stories, and preferences. No "novelty cliff."</div>
+      </div>
+      <div class="win-card">
+        <div class="win-title">Shared Activities</div>
+        <div class="win-desc">6+ collaborative activities — cooking, art, music, exercise — proven to reduce loneliness.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section id="roadmap">
+  <div class="max-w">
+    <div class="reveal">
+      <div class="section-label">Go-to-Market</div>
+      <h2 class="section-title">Four Phases to <em>Global Scale</em></h2>
+    </div>
+    <div class="roadmap-track">
+      <div class="roadmap-line"></div>
+      <div class="roadmap-phases">
+        <div class="roadmap-phase reveal reveal-delay-1">
+          <div class="phase-dot"></div>
+          <div class="phase-num">Phase 1</div>
+          <div class="phase-title">Private Care Homes</div>
+          <div class="phase-time">Month 0–12</div>
+          <ul class="phase-items">
+            <li>20–50 units deployed</li>
+            <li>HC-One, Bupa, Barchester</li>
+            <li>Measure clinical outcomes</li>
+          </ul>
+        </div>
+        <div class="roadmap-phase reveal reveal-delay-2">
+          <div class="phase-dot" style="background:var(--sage)"></div>
+          <div class="phase-num">Phase 2</div>
+          <div class="phase-title">Agencies &amp; Communities</div>
+          <div class="phase-time">Year 1–2</div>
+          <ul class="phase-items">
+            <li>Home care agencies</li>
+            <li>Retirement villages</li>
+            <li>Publish evidence base</li>
+          </ul>
+        </div>
+        <div class="roadmap-phase reveal reveal-delay-3">
+          <div class="phase-dot" style="background:var(--warm)"></div>
+          <div class="phase-num">Phase 3</div>
+          <div class="phase-title">Families + NHS + EU</div>
+          <div class="phase-time">Year 2–4</div>
+          <ul class="phase-items">
+            <li>Direct-to-family sales</li>
+            <li>NHS pilot (London ICBs)</li>
+            <li>Germany &amp; Nordics launch</li>
+          </ul>
+        </div>
+        <div class="roadmap-phase reveal reveal-delay-4">
+          <div class="phase-dot" style="background:var(--mist)"></div>
+          <div class="phase-num">Phase 4</div>
+          <div class="phase-title">Global</div>
+          <div class="phase-time">Year 5+</div>
+          <ul class="phase-items">
+            <li>Japan &amp; US entry</li>
+            <li>V2: health monitor</li>
+            <li>V3: robotic arm</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="max-w">
+    <div class="reveal">
+      <div class="section-label">The Founders</div>
+      <h2 class="section-title">The Team <em>Behind Alma</em></h2>
+    </div>
+    <div class="team-grid">
+      <div class="team-card reveal reveal-delay-1">
+        <div class="team-avatar avatar-1">🤖</div>
+        <div class="team-role">CTO</div>
+        <div class="team-name">Liyuan Lisa Chen</div>
+        <div class="team-bio">AI/ML Research Engineer with 10+ years in industrial engineering and AI. 1st Place, Robotics Challenge. MSc Electrical &amp; Electronic Engineering, Zhejiang University.</div>
+      </div>
+      <div class="team-card reveal reveal-delay-2">
+        <div class="team-avatar avatar-2">🌱</div>
+        <div class="team-role">CEO</div>
+        <div class="team-name">Yunsu Tang</div>
+        <div class="team-bio">Growth Strategist and 2x TEDx Speaker. Lovable Ambassador. MSc Management, London School of Economics. Passionate about building technology for human connection.</div>
+      </div>
+      <div class="team-card reveal reveal-delay-3">
+        <div class="team-avatar avatar-3">🔧</div>
+        <div class="team-role">Hiring Now</div>
+        <div class="team-name">Join the Mission</div>
+        <div class="team-bio">We are building to 5+ team members by June 2026. Looking for people who believe no one should age alone.</div>
+      </div>
+    </div>
+    <div class="hiring-banner reveal">
+      <div class="hiring-text">Hiring to 5+ by June 2026 — open roles:</div>
+      <div class="hiring-roles">
+        <span class="hiring-role">Robotics Engineer (ROS2, SLAM)</span>
+        <span class="hiring-role">Mechanical Engineer</span>
+        <span class="hiring-role">NHS Business Development</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING CTA -->
+<section id="cta">
+  <div class="cta-bg-glow"></div>
+  <div class="cta-inner">
+    <div class="cta-eyebrow reveal">AGI Minds Ltd · London, UK · March 2026</div>
+    <h2 class="cta-headline reveal">No One <em>Ages</em> Alone</h2>
+    <div class="cta-quote reveal">"We are building the companion we would want for our own grandparents."</div>
+    <p class="cta-sub reveal">If Alma reaches 1% of the global 65+ living alone, that is £1.4–1.7B ARR. The demographic trend is our tailwind for the next 30 years.</p>
+    <div class="cta-actions reveal">
+      <a href="mailto:hello@agriminds.com" class="btn-primary" style="font-size:1rem;padding:1rem 2.5rem;">Partner With Us</a>
+      <a href="mailto:invest@agriminds.com" class="btn-ghost" style="font-size:1rem;">Invest in Alma</a>
+    </div>
+    <div class="cta-metrics reveal">
+      <div class="cta-metric-item">
+        <div class="cta-metric">£300–500K <span>Pre-seed target</span></div>
+      </div>
+      <div class="cta-metric-item">
+        <div class="cta-metric">50 <span>Pilot units · Q1 2027</span></div>
+      </div>
+      <div class="cta-metric-item">
+        <div class="cta-metric">£1.7B <span>ARR potential at 1%</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Al<span>m</span>a</div>
+  <div style="font-size:0.8rem;opacity:0.5;font-weight:300;">
+    Google DeepMind Gemini Robotics Accelerator · March 2026
+  </div>
+  <div class="footer-meta">
+    AGI Minds Ltd · London, UK<br/>
+    The Companion That Moves With You
+  </div>
+</footer>
+
+<script>
+// Navbar shadow on scroll
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// Reveal on scroll
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+reveals.forEach(el => observer.observe(el));
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+// Counter animation for stats
+function animateCounter(el, target, suffix, duration = 1800) {
+  const start = performance.now();
+  const isFloat = target % 1 !== 0;
+  const update = (now) => {
+    const progress = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = eased * target;
+    el.textContent = (isFloat ? current.toFixed(1) : Math.floor(current)) + suffix;
+    if (progress < 1) requestAnimationFrame(update);
+    else el.textContent = target + suffix;
+  };
+  requestAnimationFrame(update);
+}
+
+// Trigger counter when stats section enters view
+const statNums = document.querySelectorAll('.stat-num');
+const statsSection = document.querySelector('#problem');
+let countersRun = false;
+const statsObserver = new IntersectionObserver(([entry]) => {
+  if (entry.isIntersecting && !countersRun) {
+    countersRun = true;
+    const data = [
+      { el: statNums[0], val: 1, suffix: 'M+' },
+      { el: statNums[1], val: 26, suffix: '%' },
+      { el: statNums[2], val: 3.7, suffix: 'B' },
+      { el: statNums[3], val: 850, suffix: '+' },
+    ];
+    data.forEach(({ el, val, suffix }) => {
+      if (el) el.textContent = '0' + suffix;
+      setTimeout(() => { if (el) animateCounter(el, val, suffix); }, 200);
+    });
+  }
+}, { threshold: 0.3 });
+if (statsSection) statsObserver.observe(statsSection);
+</script>
+</body>
+</html>
