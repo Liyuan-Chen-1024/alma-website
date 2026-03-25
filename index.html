@@ -205,6 +205,16 @@ nav {
   border: 1.5px solid rgba(0,0,0,0.07);
   border-radius: 20px; overflow: hidden;
 }
+.why-combined {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 2.5rem; align-items: start;
+}
+.why-left {
+  display: flex; flex-direction: column; gap: 1.5rem;
+}
+.why-right {
+  display: flex; flex-direction: column; gap: 1.5rem;
+}
 .benefit-card {
   padding: 2.5rem; background: rgba(255,255,255,0.6);
   backdrop-filter: blur(8px);
@@ -394,6 +404,7 @@ footer {
   .stats-row { gap: 1.5rem; }
   #showcase, #how, #modes, #team, #cta { padding: 5rem 1.5rem; }
   .benefits-grid { grid-template-columns: 1fr; }
+  .why-combined { grid-template-columns: 1fr; }
   .photos-grid { grid-template-columns: repeat(2, 1fr); }
   .steps { grid-template-columns: 1fr; gap: 2rem; }
   .modes-grid { grid-template-columns: 1fr; }
@@ -465,7 +476,7 @@ footer {
   </div>
 </div>
 
-<!-- BENEFITS -->
+<!-- WHY ALMA + MODES COMBINED -->
 <section id="benefits" class="section">
   <div class="section-inner">
     <div class="reveal">
@@ -473,21 +484,49 @@ footer {
       <h2 class="section-h2">Not a device.<br/><em>A companion.</em></h2>
       <p class="section-sub">Purpose-built for the home, powered by the world's most capable AI.</p>
     </div>
-    <div class="benefits-grid" style="margin-top:4rem;">
-      <div class="benefit-card reveal reveal-d1">
-        <div class="benefit-icon">🏠</div>
-        <div class="benefit-title">Mobile presence</div>
-        <div class="benefit-desc">Alma moves room-to-room — kitchen, living room, bedside. Physical co-presence transforms a device into a true companion.</div>
+    <div class="why-combined" style="margin-top:3rem;">
+      <div class="why-left">
+        <div class="mode-card reveal reveal-d1">
+          <img
+            src="https://storage.res-capy.com/storage/upload/users/usr_01KJPQMF48QDRRVSF1JZ514SVS/workspaces/default-workspace/sessions/1774446140820/bc92e73e-adb3-40a8-8f84-d6a12c1ff688.jpeg"
+            alt="Alma Companion Mode"
+            class="mode-img"
+          />
+          <div class="mode-body">
+            <div class="mode-tag">Companion Mode</div>
+            <div class="mode-title">Connection & joy</div>
+            <div class="mode-desc">Warm expressive face, carries tea and everyday items on the open shelf.</div>
+          </div>
+        </div>
+        <div class="mode-card reveal reveal-d2">
+          <img
+            src="https://storage.res-capy.com/storage/upload/users/usr_01KJPQMF48QDRRVSF1JZ514SVS/workspaces/default-workspace/sessions/1774446140820/29b30ec6-643c-40bd-9e4b-6c8ad8dcd9db.jpg"
+            alt="Alma Care Mode"
+            class="mode-img"
+          />
+          <div class="mode-body">
+            <div class="mode-tag">Care Mode</div>
+            <div class="mode-title">Quiet vigilance</div>
+            <div class="mode-desc">Health dashboard, medication reminders, first aid kit on the shelf.</div>
+          </div>
+        </div>
       </div>
-      <div class="benefit-card reveal reveal-d2">
-        <div class="benefit-icon">🧠</div>
-        <div class="benefit-title">Deep AI memory</div>
-        <div class="benefit-desc">Powered by Gemini's 1M-token context. Alma remembers your stories, your family, your preferences — with no novelty cliff over time.</div>
-      </div>
-      <div class="benefit-card reveal reveal-d3">
-        <div class="benefit-icon">🎨</div>
-        <div class="benefit-title">Shared activities</div>
-        <div class="benefit-desc">Cooking, art, music, games, exercise — Alma does things <em>with</em> you, not just talks at you. Six or more activities proven to reduce loneliness.</div>
+      <div class="why-right">
+        <div class="benefit-card reveal reveal-d1">
+          <div class="benefit-icon">🏠</div>
+          <div class="benefit-title">Mobile presence</div>
+          <div class="benefit-desc">Alma moves room-to-room — kitchen, living room, bedside. Physical co-presence transforms a device into a true companion.</div>
+        </div>
+        <div class="benefit-card reveal reveal-d2">
+          <div class="benefit-icon">🧠</div>
+          <div class="benefit-title">Deep AI memory</div>
+          <div class="benefit-desc">Powered by Gemini's 1M-token context. Alma remembers your stories, your family, your preferences — with no novelty cliff.</div>
+        </div>
+        <div class="benefit-card reveal reveal-d3">
+          <div class="benefit-icon">🎨</div>
+          <div class="benefit-title">Shared activities</div>
+          <div class="benefit-desc">Cooking, art, music, games, exercise — Alma does things <em>with</em> you, not just talks at you.</div>
+        </div>
       </div>
     </div>
   </div>
@@ -546,42 +585,6 @@ footer {
   </div>
 </section>
 
-<!-- MODES -->
-<section id="modes">
-  <div class="modes-inner">
-    <div class="modes-header reveal">
-      <div class="section-label">Two modes, one Alma</div>
-      <h2 class="section-h2">Companion. Carer. <em>Always there.</em></h2>
-      <p class="section-sub">Alma seamlessly shifts between warm companionship and attentive care.</p>
-    </div>
-    <div class="modes-grid">
-      <div class="mode-card reveal reveal-d1">
-        <img
-          src="https://storage.res-capy.com/storage/upload/users/usr_01KJPQMF48QDRRVSF1JZ514SVS/workspaces/default-workspace/sessions/1774446140820/bc92e73e-adb3-40a8-8f84-d6a12c1ff688.jpeg"
-          alt="Alma Companion Mode"
-          class="mode-img"
-        />
-        <div class="mode-body">
-          <div class="mode-tag">Companion Mode</div>
-          <div class="mode-title">Connection & joy</div>
-          <div class="mode-desc">Warm expressive face, carries tea and everyday items on the open shelf. Focused entirely on human connection.</div>
-        </div>
-      </div>
-      <div class="mode-card reveal reveal-d2">
-        <img
-          src="https://storage.res-capy.com/storage/upload/users/usr_01KJPQMF48QDRRVSF1JZ514SVS/workspaces/default-workspace/sessions/1774446140820/29b30ec6-643c-40bd-9e4b-6c8ad8dcd9db.jpg"
-          alt="Alma Care Mode"
-          class="mode-img"
-        />
-        <div class="mode-body">
-          <div class="mode-tag">Care Mode</div>
-          <div class="mode-title">Quiet vigilance</div>
-          <div class="mode-desc">Health dashboard, medication reminders, first aid kit on the shelf. Quietly watchful when it matters most.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- TEAM -->
 <section id="team">
