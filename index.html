@@ -671,11 +671,20 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// Form
+// Form — submit to Google Forms
 function handleSubmit(e) {
   e.preventDefault();
   const btn = e.target.querySelector('.cta-btn');
   const input = e.target.querySelector('.cta-input');
+  const email = input.value;
+  if (!email) return;
+
+  const formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfHeRah5Ie8ELMaakJbJQUVUY4slU1xgFh38RWJLyxvaEnaRQ/formResponse';
+  const data = new URLSearchParams();
+  data.append('entry.758611254', email);
+
+  fetch(formUrl, { method: 'POST', body: data, mode: 'no-cors' });
+
   btn.textContent = 'Thank you!';
   btn.style.background = '#c07840';
   input.value = '';
