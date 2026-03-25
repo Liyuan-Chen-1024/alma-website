@@ -251,8 +251,12 @@ nav {
   gap: 1rem;
 }
 .caption-time {
+  position: absolute; top: 0.75rem; left: 50%; transform: translateX(-50%);
   font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em;
-  text-transform: uppercase; color: rgba(26,26,46,0.4);
+  text-transform: uppercase; color: #fff;
+  background: rgba(26,26,46,0.55); padding: 0.3rem 0.8rem; border-radius: 100px;
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  z-index: 2; white-space: nowrap;
 }
 .caption-text { font-size: 0.9rem; font-weight: 400; color: #1a1a2e; }
 
