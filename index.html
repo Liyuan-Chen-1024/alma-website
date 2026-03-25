@@ -314,6 +314,26 @@ section { padding: 7rem 4rem; }
 .mode-name { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--glow); margin-bottom: 0.6rem; }
 .mode-desc { font-size: 0.82rem; opacity: 0.6; line-height: 1.6; }
 
+/* ─── HERO ROBOT IMAGE ─── */
+.alma-robot-img {
+  position: relative; z-index: 2;
+  width: 300px; height: 380px;
+  border-radius: 20px; overflow: hidden;
+  box-shadow: 0 24px 80px rgba(26,43,60,0.25), 0 0 60px rgba(200,136,58,0.2);
+  animation: breathe 5s ease-in-out infinite;
+}
+.alma-robot-img img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center top;
+  display: block;
+}
+
+/* ─── MODE CARD IMAGES ─── */
+.mode-img {
+  width: 100%; height: 180px; object-fit: cover;
+  border-radius: 8px; margin-bottom: 1rem;
+  display: block;
+}
+
 /* ─── DAY WITH ALMA ─── */
 #day { background: var(--cream); }
 .timeline {
@@ -347,6 +367,17 @@ section { padding: 7rem 4rem; }
   padding-left: 1rem; position: relative; line-height: 1.5;
 }
 .time-items li::before { content: '·'; position: absolute; left: 0; color: var(--amber); }
+.time-photo {
+  width: 100%; aspect-ratio: 4/3; object-fit: cover;
+  border-radius: 12px; margin: 1rem 0 1.25rem;
+  display: block;
+  box-shadow: 0 8px 30px rgba(26,43,60,0.12);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.time-block:hover .time-photo {
+  transform: scale(1.02);
+  box-shadow: 0 14px 40px rgba(26,43,60,0.18);
+}
 
 /* ─── TECHNOLOGY ─── */
 #tech { background: var(--ivory); }
@@ -672,13 +703,8 @@ footer {
       <div class="alma-orb-wrap">
         <div class="alma-orb-ring ring-1"></div>
         <div class="alma-orb-ring ring-2"></div>
-        <div class="alma-orb-ring ring-3"></div>
-        <div class="alma-orb">
-          <div class="alma-eyes">
-            <div class="alma-eye"></div>
-            <div class="alma-eye"></div>
-          </div>
-          <div class="alma-smile"></div>
+        <div class="alma-robot-img">
+          <img src="https://storage.res-capy.com/storage/upload/users/usr_01KJPQMF48QDRRVSF1JZ514SVS/workspaces/default-workspace/sessions/1774446140820/bc92e73e-adb3-40a8-8f84-d6a12c1ff688.jpeg" alt="Alma companion robot" />
         </div>
         <div class="hero-badge badge-1">
           <span class="badge-icon">💊</span> Medication reminder sent
@@ -759,10 +785,12 @@ footer {
         <div class="feature-body">Alma adapts seamlessly between warm companionship and attentive care — no awkward mode switching required.</div>
         <div class="feature-modes">
           <div class="mode-card">
+            <img src="https://storage.res-capy.com/storage/upload/users/usr_01KJPQMF48QDRRVSF1JZ514SVS/workspaces/default-workspace/sessions/1774446140820/bc92e73e-adb3-40a8-8f84-d6a12c1ff688.jpeg" alt="Alma in Companion Mode" class="mode-img" />
             <div class="mode-name">Companion Mode</div>
             <div class="mode-desc">Warm expressive face, carries tea and everyday items on the open shelf. Focused on connection and joy.</div>
           </div>
           <div class="mode-card">
+            <img src="https://storage.res-capy.com/storage/upload/users/usr_01KJPQMF48QDRRVSF1JZ514SVS/workspaces/default-workspace/sessions/1774446140820/29b30ec6-643c-40bd-9e4b-6c8ad8dcd9db.jpg" alt="Alma in Care Mode" class="mode-img" />
             <div class="mode-name">Care Mode</div>
             <div class="mode-desc">Health dashboard, medication reminders, carries first aid supplies. Quietly vigilant when it matters most.</div>
           </div>
@@ -787,6 +815,7 @@ footer {
           <div class="phase-dot"></div>
           <div class="time-label">☀ Morning</div>
           <div class="time-title">Rise &amp; Connect</div>
+          <img src="https://storage.res-capy.com/storage/upload/users/usr_01KJPQMF48QDRRVSF1JZ514SVS/workspaces/default-workspace/sessions/1774446140816/4bde0695-3699-4c4f-ad19-74dd3cbcd604.png" alt="Alma at breakfast with elderly woman" class="time-photo" />
           <ul class="time-items">
             <li>Warm personalised greeting</li>
             <li>Breakfast companion</li>
@@ -798,6 +827,7 @@ footer {
           <div class="phase-dot" style="background:var(--sage)"></div>
           <div class="time-label" style="color:var(--sage)">🎨 Afternoon</div>
           <div class="time-title">Create &amp; Engage</div>
+          <img src="https://storage.res-capy.com/storage/upload/users/usr_01KJPQMF48QDRRVSF1JZ514SVS/workspaces/default-workspace/sessions/1774446140819/dbe32102-ba21-4a28-adf5-7682f1b0f077.png" alt="Alma painting with elderly man" class="time-photo" />
           <ul class="time-items">
             <li>Guided cooking together</li>
             <li>Visual storytelling</li>
@@ -809,6 +839,7 @@ footer {
           <div class="phase-dot" style="background:var(--warm)"></div>
           <div class="time-label" style="color:var(--warm)">🎵 Evening</div>
           <div class="time-title">Reflect &amp; Unwind</div>
+          <img src="https://storage.res-capy.com/storage/upload/users/usr_01KJPQMF48QDRRVSF1JZ514SVS/workspaces/default-workspace/sessions/1774446140819/1836445e-b9b2-4d73-a059-c3403aa97a15.png" alt="Alma guiding chair exercises" class="time-photo" />
           <ul class="time-items">
             <li>Music &amp; reminiscence</li>
             <li>Gentle chair exercises</li>
@@ -820,6 +851,7 @@ footer {
           <div class="phase-dot" style="background:var(--mist)"></div>
           <div class="time-label" style="color:var(--mist)">🌙 Night</div>
           <div class="time-title">Rest &amp; Watch Over</div>
+          <img src="https://storage.res-capy.com/storage/upload/users/usr_01KJPQMF48QDRRVSF1JZ514SVS/workspaces/default-workspace/sessions/1774446140819/f6816da4-2a2f-4fb2-a970-237a85a665d8.png" alt="Alma at bedside while person sleeps" class="time-photo" />
           <ul class="time-items">
             <li>Bedside presence</li>
             <li>Sleep environment check</li>
